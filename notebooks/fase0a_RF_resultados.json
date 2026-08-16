@@ -1,0 +1,38 @@
+{
+  "algoritmo": "Random Forest",
+  "fase": 0,
+  "tipo": "classico",
+  "n_parametros_quanticos": null,
+  "config": {
+    "n_estimators": 200,
+    "max_depth": 12,
+    "n_bootstrap": 5
+  },
+  "C1": {
+    "R2": 0.2133,
+    "RMSE": 5075.96,
+    "MAE": 1828.64,
+    "WIS": 1776.42,
+    "WIS_norm": 0.6284,
+    "tempo_s": 1.2,
+    "nome": "RF_Bootstrap_C1"
+  },
+  "C2": {
+    "R2": 0.1242,
+    "RMSE": 6492.18,
+    "MAE": 2708.59,
+    "WIS": 2610.63,
+    "WIS_norm": 0.6661,
+    "tempo_s": 1.2,
+    "nome": "RF_Bootstrap_C2"
+  },
+  "C3": {
+    "R2": 0.2296,
+    "RMSE": 165.91,
+    "MAE": 144.5,
+    "WIS": 115.81,
+    "WIS_norm": 0.2177,
+    "tempo_s": 1.3,
+    "nome": "RF_Bootstrap_C3"
+  }
+}

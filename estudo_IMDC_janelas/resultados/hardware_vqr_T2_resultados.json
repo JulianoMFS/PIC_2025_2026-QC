@@ -1,0 +1,53 @@
+{
+  "modelo": "VQR_AngleEmbedding",
+  "janela": "T2",
+  "descricao": "IMDC Teste 2 — surto recorde 2024  (out/2023 – set/2024)",
+  "n_semanas": 25,
+  "shots": 2048,
+  "backend": "ibm_fez",
+  "executado_em_hardware": true,
+  "metricas": {
+    "Simulador (default.qubit)": {
+      "R2": -0.3787,
+      "RMSE": 9523.6753,
+      "MAE": 5582.349
+    },
+    "Fake IBM (FakeBrisbane)": {
+      "R2": -0.3763,
+      "RMSE": 9515.53,
+      "MAE": 5626.3886
+    },
+    "Hardware (ibm_fez)": {
+      "R2": -0.3774,
+      "RMSE": 9519.0286,
+      "MAE": 5597.2305
+    }
+  },
+  "indices_semanas": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    29,
+    31,
+    34,
+    36,
+    38,
+    40,
+    42,
+    44,
+    46,
+    48,
+    51
+  ]
+}

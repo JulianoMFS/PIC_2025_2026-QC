@@ -1,0 +1,45 @@
+{
+  "algoritmo": "Ensemble_Regime_QSVM_RF",
+  "fase": 40,
+  "tipo": "hibrido",
+  "n_parametros_quanticos": 0,
+  "config": {
+    "n_qubits": 6,
+    "n_layers_kernel": 2,
+    "seed": 42,
+    "C_svm": 10.0,
+    "roteador": "QSVM (kernel quantico)",
+    "especialista": "RandomForest por regime",
+    "n_bootstrap": 5
+  },
+  "C1": {
+    "R2": 0.1598,
+    "RMSE": 5245.83,
+    "MAE": 1880.23,
+    "WIS": 1789.91,
+    "WIS_norm": 0.6332,
+    "tempo_s": 116.6,
+    "nome": "Ensemble_C1",
+    "acc_regime": 0.8601
+  },
+  "C2": {
+    "R2": 0.0944,
+    "RMSE": 6601.51,
+    "MAE": 2774.99,
+    "WIS": 2693.44,
+    "WIS_norm": 0.6872,
+    "tempo_s": 275.9,
+    "nome": "Ensemble_C2",
+    "acc_regime": 0.8242
+  },
+  "C3": {
+    "R2": -9.7337,
+    "RMSE": 619.3,
+    "MAE": 265.14,
+    "WIS": 226.92,
+    "WIS_norm": 0.4266,
+    "tempo_s": 379.7,
+    "nome": "Ensemble_C3",
+    "acc_regime": 0.8889
+  }
+}

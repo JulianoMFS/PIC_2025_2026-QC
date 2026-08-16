@@ -1,0 +1,25 @@
+{
+  "C1": {
+    "R2": NaN,
+    "WIS": 1882.35,
+    "WIS_norm": NaN,
+    "RMSE": NaN,
+    "MAE": NaN
+  },
+  "C2": {
+    "R2": NaN,
+    "WIS": 1882.35,
+    "WIS_norm": NaN,
+    "RMSE": NaN,
+    "MAE": NaN
+  },
+  "C3": {
+    "R2": NaN,
+    "WIS": 1882.35,
+    "WIS_norm": NaN,
+    "RMSE": NaN,
+    "MAE": NaN
+  },
+  "_algoritmo": "Optuna-VQR",
+  "_fase": 12
+}

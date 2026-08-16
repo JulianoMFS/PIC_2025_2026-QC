@@ -1,0 +1,43 @@
+{
+  "algoritmo": "QSVM-QuantumKernel",
+  "fase": 7,
+  "tipo": "kernel",
+  "n_parametros_quanticos": 0,
+  "config": {
+    "n_qubits": 6,
+    "n_layers_kernel": 2,
+    "seed": 42,
+    "C_svm": 10.0,
+    "epsilon_svr": 0.1
+  },
+  "C1": {
+    "R2": -0.0551,
+    "RMSE": 5878.53,
+    "MAE": 2323.35,
+    "WIS": 2314.73,
+    "WIS_norm": 0.8188,
+    "tempo_s": 0.1,
+    "nome": "QSVM_C1",
+    "acc_regime": 0.8601
+  },
+  "C2": {
+    "R2": -0.1429,
+    "RMSE": 7416.28,
+    "MAE": 3436.42,
+    "WIS": 3421.82,
+    "WIS_norm": 0.8731,
+    "tempo_s": 0.1,
+    "nome": "QSVM_C2",
+    "acc_regime": 0.8242
+  },
+  "C3": {
+    "R2": -16.7413,
+    "RMSE": 796.19,
+    "MAE": 369.57,
+    "WIS": 404.41,
+    "WIS_norm": 0.7603,
+    "tempo_s": 0.0,
+    "nome": "QSVM_C3",
+    "acc_regime": 0.8889
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "C1": {
+    "R2": 0.0,
+    "WIS": 6.0,
+    "WIS_norm": 0.0,
+    "RMSE": 0.0,
+    "MAE": 0.0
+  },
+  "C2": {
+    "R2": 0.0,
+    "WIS": 4.0,
+    "WIS_norm": 0.0,
+    "RMSE": 0.0,
+    "MAE": 0.0
+  },
+  "C3": {
+    "R2": 0.0,
+    "WIS": 6.0,
+    "WIS_norm": 0.0,
+    "RMSE": 0.0,
+    "MAE": 0.0
+  },
+  "_algoritmo": "Diebold_Mariano",
+  "_fase": 17
+}

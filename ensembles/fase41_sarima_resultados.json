@@ -1,0 +1,39 @@
+{
+  "algoritmo": "SARIMA",
+  "fase": 41,
+  "tipo": "classico_serie_temporal",
+  "n_parametros_quanticos": null,
+  "config": {
+    "order": "(2,1,2)",
+    "seasonal": "(1,0,0,52) quando n>=60",
+    "alvo": "log1p",
+    "n_amostras_intervalo": 30
+  },
+  "C1": {
+    "R2": -0.1659,
+    "RMSE": 6179.55,
+    "MAE": 2380.75,
+    "WIS": 86474.11,
+    "WIS_norm": 30.5903,
+    "tempo_s": 0.1,
+    "nome": "SARIMA_C1"
+  },
+  "C2": {
+    "R2": -0.211,
+    "RMSE": 7634.03,
+    "MAE": 3426.07,
+    "WIS": 3377.29,
+    "WIS_norm": 0.8617,
+    "tempo_s": 1.4,
+    "nome": "SARIMA_C2"
+  },
+  "C3": {
+    "R2": -7.0842,
+    "RMSE": 537.46,
+    "MAE": 488.07,
+    "WIS": 3001923.3,
+    "WIS_norm": 5643.4988,
+    "tempo_s": 1.1,
+    "nome": "SARIMA_C3"
+  }
+}

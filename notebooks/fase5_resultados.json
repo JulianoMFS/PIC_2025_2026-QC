@@ -1,0 +1,39 @@
+{
+  "fase": "Fase6",
+  "modelo": "QAE_AnomalyDetector",
+  "timestamp": "2026-07-14T22:53:16.564853",
+  "config": {
+    "n_qubits": 6,
+    "n_latent": 2,
+    "n_layers_enc": 3,
+    "n_layers_dec": 3,
+    "n_epochs": 120,
+    "lr": 0.02,
+    "n_boot": 8,
+    "window": 8,
+    "anomaly_pct": 95,
+    "smoothing_win": 5,
+    "antecipacao_alvo": 4,
+    "seed": 42,
+    "experiment": "PIBIT_IMDC_Fase6_QAE_AnomalyDetector"
+  },
+  "arquitetura": {
+    "n_qubits": 6,
+    "n_latent": 2,
+    "n_trash": 4,
+    "window": 8
+  },
+  "threshold": 0.7600650612071215,
+  "antecipacao_semanas": 21,
+  "data_primeiro_alarme": "2023-09-24",
+  "auc": {
+    "QAE (quantum)": 0.8935328784119106,
+    "Z-score (classico)": 0.5980407361455748,
+    "CUSUM (classico)": 0.9532413151364764
+  },
+  "erro_medio": {
+    "c1": 0.6639754955260336,
+    "c2": 0.7968496975337575
+  },
+  "semanas_em_anomalia": 74
+}

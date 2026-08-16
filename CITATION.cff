@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Se este material for útil, cite conforme abaixo."
+title: "Previsão de dengue no Distrito Federal com computação quântica e aprendizado de máquina quântico"
+type: software
+authors:
+  - family-names: "Silva"
+    given-names: "Juliano de Morais Ferreira"
+  - family-names: "Martins"
+    given-names: "Kelvin dos Santos"
+version: "1.0.0"
+date-released: "2026-07-18"
+license: MIT
+keywords:
+  - quantum machine learning
+  - dengue forecasting
+  - InfoDengue
+  - Mosqlimate
+  - anomaly detection
+  - epidemiological surveillance
+abstract: >
+  Benchmark de modelos clássicos e quânticos para previsão probabilística semanal
+  e detecção de mudanças de regime da dengue no Distrito Federal, com validação
+  temporal reprodutível e execução parcial em hardware quântico real (IBM Quantum).

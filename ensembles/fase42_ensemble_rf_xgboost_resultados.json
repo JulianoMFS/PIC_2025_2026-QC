@@ -1,0 +1,41 @@
+{
+  "algoritmo": "Ensemble_RF_XGBoost",
+  "fase": 42,
+  "tipo": "ensemble_classico",
+  "n_parametros_quanticos": null,
+  "config": {
+    "modelos": [
+      "RandomForest",
+      "XGBoost"
+    ],
+    "n_bootstrap_cada": 5,
+    "combinacao": "mediana das reunidas"
+  },
+  "C1": {
+    "R2": 0.223,
+    "RMSE": 5044.54,
+    "MAE": 1795.94,
+    "WIS": 1670.56,
+    "WIS_norm": 0.591,
+    "tempo_s": 1.4,
+    "nome": "Ensemble_RFXGB_C1"
+  },
+  "C2": {
+    "R2": 0.1342,
+    "RMSE": 6455.05,
+    "MAE": 2708.11,
+    "WIS": 2576.44,
+    "WIS_norm": 0.6574,
+    "tempo_s": 1.3,
+    "nome": "Ensemble_RFXGB_C2"
+  },
+  "C3": {
+    "R2": 0.1436,
+    "RMSE": 174.93,
+    "MAE": 153.97,
+    "WIS": 117.47,
+    "WIS_norm": 0.2208,
+    "tempo_s": 1.3,
+    "nome": "Ensemble_RFXGB_C3"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "C1": {
+    "R2": 0.2271,
+    "WIS": NaN,
+    "WIS_norm": NaN,
+    "RMSE": 5031.3,
+    "MAE": 1842.1
+  },
+  "C2": {
+    "R2": 0.1776,
+    "WIS": NaN,
+    "WIS_norm": NaN,
+    "RMSE": 6290.89,
+    "MAE": 2599.41
+  },
+  "C3": {
+    "R2": 0.2933,
+    "WIS": NaN,
+    "WIS_norm": NaN,
+    "RMSE": 158.91,
+    "MAE": 137.02
+  },
+  "_algoritmo": "SHAP-RF",
+  "_fase": 11
+}

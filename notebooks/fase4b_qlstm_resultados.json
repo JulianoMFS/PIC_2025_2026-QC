@@ -1,0 +1,42 @@
+{
+  "algoritmo": "QLSTM",
+  "fase": 34,
+  "tipo": "quantico_recorrente",
+  "n_parametros_quanticos": null,
+  "config": {
+    "n_qubits": 4,
+    "W": 4,
+    "n_layers": 1,
+    "n_epochs": 30,
+    "n_bootstrap": 3,
+    "otimizador": "Adam(0.05)",
+    "alvo": "log1p"
+  },
+  "C1": {
+    "R2": -0.0514,
+    "RMSE": 5868.26,
+    "MAE": 2607.61,
+    "WIS": 2551.33,
+    "WIS_norm": 0.9025,
+    "tempo_s": 312.1,
+    "nome": "QLSTM_C1"
+  },
+  "C2": {
+    "R2": -0.1669,
+    "RMSE": 7493.77,
+    "MAE": 3571.54,
+    "WIS": 3540.27,
+    "WIS_norm": 0.9033,
+    "tempo_s": 599.7,
+    "nome": "QLSTM_C2"
+  },
+  "C3": {
+    "R2": -37.9092,
+    "RMSE": 1179.1,
+    "MAE": 1163.59,
+    "WIS": 1071.51,
+    "WIS_norm": 2.0144,
+    "tempo_s": 742.5,
+    "nome": "QLSTM_C3"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "C1": {
+    "R2": 0.0,
+    "WIS": 4.0,
+    "WIS_norm": 2.0,
+    "RMSE": 0.06,
+    "MAE": 0.05
+  },
+  "C2": {
+    "R2": 0.0,
+    "WIS": 4.0,
+    "WIS_norm": 2.0,
+    "RMSE": 0.06,
+    "MAE": 0.05
+  },
+  "C3": {
+    "R2": 0.0,
+    "WIS": 4.0,
+    "WIS_norm": 2.0,
+    "RMSE": 0.06,
+    "MAE": 0.05
+  },
+  "_algoritmo": "Fourier_Espectro",
+  "_fase": 222
+}

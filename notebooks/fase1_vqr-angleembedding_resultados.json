@@ -1,0 +1,43 @@
+{
+  "algoritmo": "VQR-AngleEmbedding",
+  "fase": 1,
+  "tipo": "variacional",
+  "n_parametros_quanticos": 79,
+  "config": {
+    "n_qubits": 6,
+    "n_layers": 4,
+    "n_features": 6,
+    "n_epochs": 80,
+    "lr": 0.01,
+    "n_bootstrap": 5,
+    "seed": 42,
+    "patience": 15
+  },
+  "C1": {
+    "R2": -0.0361,
+    "RMSE": 5825.37,
+    "MAE": 2272.95,
+    "WIS": 2167.6,
+    "WIS_norm": 0.7668,
+    "tempo_s": 409.0,
+    "nome": "VQR_F1_C1"
+  },
+  "C2": {
+    "R2": -0.1471,
+    "RMSE": 7429.86,
+    "MAE": 3422.39,
+    "WIS": 3330.95,
+    "WIS_norm": 0.8499,
+    "tempo_s": 1048.1,
+    "nome": "VQR_F1_C2"
+  },
+  "C3": {
+    "R2": -15.0591,
+    "RMSE": 757.51,
+    "MAE": 735.82,
+    "WIS": 622.91,
+    "WIS_norm": 1.171,
+    "tempo_s": 1482.6,
+    "nome": "VQR_F1_C3"
+  }
+}

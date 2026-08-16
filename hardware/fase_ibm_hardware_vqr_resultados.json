@@ -1,0 +1,52 @@
+{
+  "modelo": "VQR_AngleEmbedding",
+  "cenario": "C2",
+  "n_semanas": 25,
+  "shots": 2048,
+  "backend": "ibm_fez",
+  "executado_em_hardware": true,
+  "metricas": {
+    "Simulador (default.qubit)": {
+      "R2": -0.1434,
+      "RMSE": 7466.8844,
+      "MAE": 3429.2558
+    },
+    "Fake IBM (FakeBrisbane)": {
+      "R2": -0.1447,
+      "RMSE": 7471.2755,
+      "MAE": 3513.2555
+    },
+    "Hardware (ibm_fez)": {
+      "R2": -0.1457,
+      "RMSE": 7474.5787,
+      "MAE": 3485.1659
+    }
+  },
+  "indices_semanas": [
+    0,
+    3,
+    7,
+    11,
+    15,
+    18,
+    22,
+    26,
+    30,
+    33,
+    37,
+    41,
+    45,
+    48,
+    52,
+    56,
+    60,
+    63,
+    67,
+    71,
+    75,
+    78,
+    82,
+    86,
+    90
+  ]
+}

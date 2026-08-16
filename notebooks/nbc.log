@@ -1,0 +1,307 @@
+[NbConvertApp] Converting notebook Fase0_Classico_RF_IMDC.ipynb to notebook
+C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\zmq\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.
+  self._get_loop()
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Scripts\jupyter-nbconvert.EXE\__main__.py", line 5, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\jupyter_core\application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\traitlets\config\application.py", line 1082, in launch_instance
+    app.start()
+    ~~~~~~~~~^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources, input_buffer=input_buffer
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources=resources
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\exporters\exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\exporters\exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        nbformat.read(file_stream, as_version=4), resources=resources, **kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\exporters\notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\exporters\exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\exporters\exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\preprocessors\base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\preprocessors\execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbconvert\preprocessors\execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\julia\AppData\Local\Programs\Python\Python313\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+try:
+    import mlflow, mlflow.sklearn
+    mlflow.set_tracking_uri("mlruns")
+    _MLFLOW = False  # tracking desativado (entregável)
+except ImportError:
+    _MLFLOW = False
+    print("[AVISO] mlflow nao instalado — execute: pip install mlflow")
+import warnings; warnings.filterwarnings("ignore")
+import os, json, sys, time
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.ensemble import RandomForestRegressor
+
+REPO_ROOT = os.path.abspath(os.path.join(os.getcwd(), ".."))
+sys.path.insert(0, os.path.join(REPO_ROOT, "src"))
+from feature_engineering import construir_features, splits_validacao
+
+CACHE = os.path.join(REPO_ROOT, "data", "dados_dengue_df_real.json")
+with open(CACHE, encoding="utf-8") as f:
+    dados_brutos = json.load(f)
+
+dataset = construir_features(dados_brutos, n_lags=4)
+splits  = splits_validacao(dataset)
+
+NOMES = {0: ("C1", "Transmissão normal/crescente  (out/2023 – out/2024)"),
+         1: ("C2", "Pico recorde 25.714 casos/sem  (jun/2024 – jun/2025)"),
+         2: ("C3", "Pós-surto, Rt < 1              (out/2024 – jun/2025)")}
+
+CENARIOS = {}
+for idx, split in enumerate(splits[:3]):
+    nome, desc = NOMES[idx]
+    tr, te = split["treino"], split["teste"]
+    CENARIOS[nome] = {
+        "X_train": np.array(tr["X"]), "y_train": np.array(tr["y"]),
+        "X_test":  np.array(te["X"]), "y_test":  np.array(te["y"]),
+        "datas":   te.get("datas", []),
+        "nome": desc,
+        "periodo_treino": split.get("periodo_treino", ""),
+        "periodo_teste":  split.get("periodo_teste",  ""),
+    }
+
+print(f"Features ({len(dataset['feature_names'])}): {dataset['feature_names']}")
+for nome, d in CENARIOS.items():
+    print(f"{nome}: treino={len(d['X_train'])} | teste={len(d['X_test'])} | "
+          f"target_max={max(d['y_test']):.0f}")
+
+# \u2500\u2500 utilitários compartilhados (utils_qml.py na raiz do projeto) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.abspath(".."))
+from utils_qml import (calcular_wis, metricas, salvar_padrao, plot_pred,
+                        validar_json_saida, validar_pipeline,
+                        testar_invariancia_quantica, testar_propriedades,
+                        validar_golden)
+testar_propriedades()
+print("[OK] utils_qml importado")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mOverflowError[39m                             Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 5[39m
+[32m      1[39m [38;5;28;01mtry[39;00m:
+[32m      2[39m     [38;5;28;01mimport[39;00m mlflow, mlflow.sklearn
+[32m      3[39m     mlflow.set_tracking_uri([33m"mlruns"[39m)
+[32m      4[39m     _MLFLOW = [38;5;28;01mFalse[39;00m  [38;5;66;03m# tracking desativado (entregável)[39;00m
+[32m----> [39m[32m5[39m [38;5;28;01mexcept[39;00m ImportError:
+[32m      6[39m     _MLFLOW = [38;5;28;01mFalse[39;00m
+[32m      7[39m     print([33m"[AVISO] mlflow nao instalado — execute: pip install mlflow"[39m)
+[32m      8[39m [38;5;28;01mimport[39;00m warnings; warnings.filterwarnings([33m"ignore"[39m)
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\__init__.py:44[39m
+[32m     41[39m     mlflow.mismatch._check_version_mismatch()
+[32m     43[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m IS_TRACING_SDK_ONLY:
+[32m---> [39m[32m44[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     45[39m         artifacts,  [38;5;66;03m# noqa: F401[39;00m
+[32m     46[39m         client,  [38;5;66;03m# noqa: F401[39;00m
+[32m     47[39m         config,  [38;5;66;03m# noqa: F401[39;00m
+[32m     48[39m         data,  [38;5;66;03m# noqa: F401[39;00m
+[32m     49[39m         exceptions,  [38;5;66;03m# noqa: F401[39;00m
+[32m     50[39m         genai,  [38;5;66;03m# noqa: F401[39;00m
+[32m     51[39m         models,  [38;5;66;03m# noqa: F401[39;00m
+[32m     52[39m         projects,  [38;5;66;03m# noqa: F401[39;00m
+[32m     53[39m         tracking,  [38;5;66;03m# noqa: F401[39;00m
+[32m     54[39m     )
+[32m     56[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m tracing  [38;5;66;03m# noqa: F401[39;00m
+[32m     57[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01menvironment_variables[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MLFLOW_CONFIGURE_LOGGING
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\artifacts\__init__.py:14[39m
+[32m     12[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mexceptions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MlflowException
+[32m     13[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mprotos[39;00m[34;01m.[39;00m[34;01mdatabricks_pb2[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BAD_REQUEST, INVALID_PARAMETER_VALUE
+[32m---> [39m[32m14[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mtracking[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _get_store
+[32m     15[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mtracking[39;00m[34;01m.[39;00m[34;01martifact_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     16[39m     _download_artifact_from_uri,
+[32m     17[39m     _get_root_uri_and_artifact_path,
+[32m     18[39m     add_databricks_profile_info_to_artifact_uri,
+[32m     19[39m     get_artifact_repository,
+[32m     20[39m )
+[32m     23[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mdownload_artifacts[39m(
+[32m     24[39m     artifact_uri: [38;5;28mstr[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m,
+[32m     25[39m     run_id: [38;5;28mstr[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m,
+[32m   (...)[39m[32m     29[39m     registry_uri: [38;5;28mstr[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m,
+[32m     30[39m ) -> [38;5;28mstr[39m:
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\tracking\__init__.py:33[39m
+[32m     28[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mtracking[39;00m[34;01m.[39;00m[34;01m_model_registry[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     29[39m     get_registry_uri,
+[32m     30[39m     set_registry_uri,
+[32m     31[39m )
+[32m     32[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mtracking[39;00m[34;01m.[39;00m[34;01m_tracking_service[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _get_artifact_repo
+[32m---> [39m[32m33[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mtracking[39;00m[34;01m.[39;00m[34;01mclient[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MlflowClient
+[32m     35[39m __all__ += [
+[32m     36[39m     [33m"[39m[33mget_registry_uri[39m[33m"[39m,
+[32m     37[39m     [33m"[39m[33mset_registry_uri[39m[33m"[39m,
+[32m     38[39m     [33m"[39m[33mMlflowClient[39m[33m"[39m,
+[32m     39[39m ]
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\tracking\client.py:27[39m
+[32m     24[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpydantic[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BaseModel
+[32m     26[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmlflow[39;00m
+[32m---> [39m[32m27[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mentities[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     28[39m     DatasetInput,
+[32m     29[39m     EvaluationDataset,
+[32m     30[39m     Experiment,
+[32m     31[39m     FileInfo,
+[32m     32[39m     LoggedModel,
+[32m     33[39m     LoggedModelInput,
+[32m     34[39m     LoggedModelOutput,
+[32m     35[39m     LoggedModelStatus,
+[32m     36[39m     Metric,
+[32m     37[39m     Param,
+[32m     38[39m     Run,
+[32m     39[39m     RunTag,
+[32m     40[39m     Span,
+[32m     41[39m     SpanStatus,
+[32m     42[39m     SpanType,
+[32m     43[39m     Trace,
+[32m     44[39m     TraceArchivalConfig,
+[32m     45[39m     ViewType,
+[32m     46[39m     Workspace,
+[32m     47[39m     WorkspaceDeletionMode,
+[32m     48[39m )
+[32m     49[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mentities[39;00m[34;01m.[39;00m[34;01mmodel_registry[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ModelVersion, Prompt, PromptVersion, RegisteredModel
+[32m     50[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mentities[39;00m[34;01m.[39;00m[34;01mmodel_registry[39;00m[34;01m.[39;00m[34;01mmodel_version_stages[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ALL_STAGES
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1420[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\entities\__init__.py:203[39m, in [36m__getattr__[39m[34m(name)[39m
+[32m    201[39m [38;5;28;01mif[39;00m name == [33m"[39m[33mEvaluationDataset[39m[33m"[39m:
+[32m    202[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m203[39m         [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mentities[39;00m[34;01m.[39;00m[34;01mevaluation_dataset[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m EvaluationDataset
+[32m    205[39m         [38;5;28;01mreturn[39;00m EvaluationDataset
+[32m    206[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
+[32m    207[39m         [38;5;66;03m# EvaluationDataset requires mlflow.data which may not be available[39;00m
+[32m    208[39m         [38;5;66;03m# in minimal installations like mlflow-tracing[39;00m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\entities\evaluation_dataset.py:7[39m
+[32m      4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01menum[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Enum
+[32m      5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TYPE_CHECKING, Any
+[32m----> [39m[32m7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dataset
+[32m      8[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mevaluation_dataset_source[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m EvaluationDatasetSource
+[32m      9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mpyfunc_dataset_mixin[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m PyFuncConvertibleDatasetMixin
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\data\__init__.py:4[39m
+[32m      1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01msys[39;00m
+[32m      2[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mcontextlib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m suppress
+[32m----> [39m[32m4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m dataset_registry
+[32m      5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m sources [38;5;28;01mas[39;00m mlflow_data_sources
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mdataset[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dataset
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\data\dataset_registry.py:145[39m
+[32m    143[39m [38;5;66;03m# use contextlib suppress to ignore import errors[39;00m
+[32m    144[39m [38;5;28;01mwith[39;00m suppress([38;5;167;01mImportError[39;00m):
+[32m--> [39m[32m145[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mpandas_dataset[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m from_pandas
+[32m    147[39m     _dataset_registry.register_constructor(from_pandas)
+[32m    148[39m [38;5;28;01mwith[39;00m suppress([38;5;167;01mImportError[39;00m):
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\mlflow\data\pandas_dataset.py:6[39m
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mfunctools[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cached_property
+[32m      4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Any
+[32m----> [39m[32m6[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
+[32m      8[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mdataset[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dataset
+[32m      9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmlflow[39;00m[34;01m.[39;00m[34;01mdata[39;00m[34;01m.[39;00m[34;01mdataset_source[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DatasetSource
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\__init__.py:23[39m
+[32m     21[39m [38;5;28;01mfor[39;00m _dependency [38;5;129;01min[39;00m _hard_dependencies:
+[32m     22[39m     [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m23[39m         [30;43m__import__[39;49m[30;43m([39;49m[30;43m_dependency[39;49m[30;43m)[39;49m
+[32m     24[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m _e:  [38;5;66;03m# pragma: no cover[39;00m
+[32m     25[39m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m     26[39m             [33mf[39m[33m"[39m[33mUnable to import required dependency [39m[38;5;132;01m{[39;00m_dependency[38;5;132;01m}[39;00m[33m. [39m[33m"[39m
+[32m     27[39m             [33m"[39m[33mPlease see the traceback for details.[39m[33m"[39m
+[32m     28[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m_e[39;00m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\numpy\__init__.py:235[39m
+[32m    233[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mcore[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m [38;5;28mabs[39m
+[32m    234[39m [38;5;66;03m# now that numpy modules are imported, can initialize limits[39;00m
+[32m--> [39m[32m235[39m [30;43mcore[39;49m[30;43m.[39;49m[30;43mgetlimits[39;49m[30;43m.[39;49m[30;43m_register_known_types[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    237[39m __all__.extend([[33m'[39m[33m__version__[39m[33m'[39m, [33m'[39m[33mshow_config[39m[33m'[39m])
+[32m    238[39m __all__.extend(core.__all__)
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\numpy\core\getlimits.py:230[39m, in [36m_register_known_types[39m[34m()[39m
+[32m    228[39m [38;5;28;01mwith[39;00m numeric.errstate([38;5;28mall[39m=[33m'[39m[33mignore[39m[33m'[39m):
+[32m    229[39m     huge_f128 = (ld([32m1[39m) - epsneg_f128) / tiny_f128 * ld([32m4[39m)
+[32m--> [39m[32m230[39m float128_ma = [30;43mMachArLike[39;49m[30;43m([39;49m[30;43mld[39;49m[30;43m,[39;49m
+[32m    231[39m [30;43m                         [39;49m[30;43mmachep[39;49m[30;43m=[39;49m[30;43m-[39;49m[30;43m112[39;49m[30;43m,[39;49m
+[32m    232[39m [30;43m                         [39;49m[30;43mnegep[39;49m[30;43m=[39;49m[30;43m-[39;49m[30;43m113[39;49m[30;43m,[39;49m
+[32m    233[39m [30;43m                         [39;49m[30;43mminexp[39;49m[30;43m=[39;49m[30;43m-[39;49m[30;43m16382[39;49m[30;43m,[39;49m
+[32m    234[39m [30;43m                         [39;49m[30;43mmaxexp[39;49m[30;43m=[39;49m[30;43m16384[39;49m[30;43m,[39;49m
+[32m    235[39m [30;43m                         [39;49m[30;43mit[39;49m[30;43m=[39;49m[30;43m112[39;49m[30;43m,[39;49m
+[32m    236[39m [30;43m                         [39;49m[30;43miexp[39;49m[30;43m=[39;49m[30;43m15[39;49m[30;43m,[39;49m
+[32m    237[39m [30;43m                         [39;49m[30;43mibeta[39;49m[30;43m=[39;49m[30;43m2[39;49m[30;43m,[39;49m
+[32m    238[39m [30;43m                         [39;49m[30;43mirnd[39;49m[30;43m=[39;49m[30;43m5[39;49m[30;43m,[39;49m
+[32m    239[39m [30;43m                         [39;49m[30;43mngrd[39;49m[30;43m=[39;49m[30;43m0[39;49m[30;43m,[39;49m
+[32m    240[39m [30;43m                         [39;49m[30;43meps[39;49m[30;43m=[39;49m[30;43mexp2[39;49m[30;43m([39;49m[30;43mld[39;49m[30;43m([39;49m[30;43m-[39;49m[30;43m112[39;49m[30;43m)[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    241[39m [30;43m                         [39;49m[30;43mepsneg[39;49m[30;43m=[39;49m[30;43mepsneg_f128[39;49m[30;43m,[39;49m
+[32m    242[39m [30;43m                         [39;49m[30;43mhuge[39;49m[30;43m=[39;49m[30;43mhuge_f128[39;49m[30;43m,[39;49m
+[32m    243[39m [30;43m                         [39;49m[30;43mtiny[39;49m[30;43m=[39;49m[30;43mtiny_f128[39;49m[30;43m)[39;49m
+[32m    244[39m [38;5;66;03m# IEEE 754 128-bit binary float[39;00m
+[32m    245[39m _register_type(float128_ma,
+[32m    246[39m     [33mb[39m[33m'[39m[38;5;130;01m\x9a[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\x99[39;00m[38;5;130;01m\xfb[39;00m[38;5;130;01m\xbf[39;00m[33m'[39m)
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python313\Lib\site-packages\numpy\core\getlimits.py:52[39m, in [36mMachArLike.__init__[39m[34m(self, ftype, eps, epsneg, huge, tiny, ibeta, smallest_subnormal, **kwargs)[39m
+[32m     50[39m [38;5;28mself[39m.ibeta = [38;5;28mself[39m.params[[33m'[39m[33mitype[39m[33m'[39m](ibeta)
+[32m     51[39m [38;5;28mself[39m.[34m__dict__[39m.update(kwargs)
+[32m---> [39m[32m52[39m [38;5;28mself[39m.precision = [30;43mint[39;49m[30;43m([39;49m[30;43m-[39;49m[30;43mlog10[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43meps[39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m     53[39m [38;5;28mself[39m.resolution = [38;5;28mself[39m._float_to_float(
+[32m     54[39m     [38;5;28mself[39m._float_conv([32m10[39m) ** (-[38;5;28mself[39m.precision))
+[32m     55[39m [38;5;28mself[39m._str_eps = [38;5;28mself[39m._float_to_str([38;5;28mself[39m.eps)
+
+[31mOverflowError[39m: cannot convert longdouble infinity to integer
+

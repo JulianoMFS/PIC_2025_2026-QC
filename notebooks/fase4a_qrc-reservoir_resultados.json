@@ -1,0 +1,42 @@
+{
+  "algoritmo": "QRC-Reservoir",
+  "fase": 8,
+  "tipo": "reservatorio",
+  "n_parametros_quanticos": 0,
+  "config": {
+    "n_qubits": 8,
+    "n_layers_res": 6,
+    "n_reservoir_features": 24,
+    "alpha_ridge": 0.001,
+    "n_bootstrap": 10,
+    "seed": 42,
+    "window_size": 4
+  },
+  "C1": {
+    "R2": 0.0301,
+    "RMSE": 5636.03,
+    "MAE": 2302.23,
+    "WIS": 1819.64,
+    "WIS_norm": 0.6437,
+    "tempo_s": 0.0,
+    "nome": "QRC_C1"
+  },
+  "C2": {
+    "R2": -0.0509,
+    "RMSE": 7111.37,
+    "MAE": 3026.94,
+    "WIS": 2635.76,
+    "WIS_norm": 0.6725,
+    "tempo_s": 0.0,
+    "nome": "QRC_C2"
+  },
+  "C3": {
+    "R2": -0.7993,
+    "RMSE": 253.56,
+    "MAE": 217.6,
+    "WIS": 162.82,
+    "WIS_norm": 0.3061,
+    "tempo_s": 0.0,
+    "nome": "QRC_C3"
+  }
+}

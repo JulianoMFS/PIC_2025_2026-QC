@@ -1,0 +1,46 @@
+{
+  "algoritmo": "VQR-ReUploading",
+  "fase": 2,
+  "tipo": "variacional",
+  "n_parametros_quanticos": 169,
+  "config": {
+    "n_qubits": 6,
+    "n_layers": 6,
+    "n_features": 64,
+    "reuploading_layers": 3,
+    "n_epochs": 80,
+    "lr_init": 0.05,
+    "lr_min": 0.001,
+    "batch_size": 16,
+    "n_bootstrap": 5,
+    "seed": 42,
+    "patience": 15
+  },
+  "C1": {
+    "R2": -0.0106,
+    "RMSE": 5753.12,
+    "MAE": 2089.77,
+    "WIS": 1967.0,
+    "WIS_norm": 0.6958,
+    "tempo_s": 471.3,
+    "nome": "VQR_F2_C1"
+  },
+  "C2": {
+    "R2": -0.1528,
+    "RMSE": 7448.13,
+    "MAE": 3289.05,
+    "WIS": 3168.59,
+    "WIS_norm": 0.8085,
+    "tempo_s": 537.1,
+    "nome": "VQR_F2_C2"
+  },
+  "C3": {
+    "R2": -6.9234,
+    "RMSE": 532.09,
+    "MAE": 499.6,
+    "WIS": 294.19,
+    "WIS_norm": 0.5531,
+    "tempo_s": 381.9,
+    "nome": "VQR_F2_C3"
+  }
+}

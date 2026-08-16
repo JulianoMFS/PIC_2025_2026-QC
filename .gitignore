@@ -1,0 +1,36 @@
+# ─── Segredos (NUNCA versionar) ───────────────────────────────
+.env
+*.env
+**/segredos*
+**/*token*
+**/*api_key*
+
+# ─── Dados brutos grandes (baixados via script) ───────────────
+notebooks/data/*.csv.gz
+notebooks/data/*.csv
+data/dados_dengue_df_real_EXTENDIDO_out2025.json
+**/submissions/
+
+# ─── MLflow / tracking ────────────────────────────────────────
+notebooks/mlruns/
+mlruns/
+mlartifacts/
+
+# ─── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+
+# ─── Documentos de trabalho (.docx do relatório) ──────────────
+# O relatório final é entregue à parte; o repositório guarda código e dados.
+*.docx
+~$*.docx
+
+# ─── Sistema ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,14 @@
+# Versões congeladas (Python 3.10.20). Instalar com: pip install -r requirements.txt
+pennylane==0.42.3
+pennylane-qiskit==0.42.0
+qiskit==1.2.4
+qiskit-ibm-runtime==0.29.0
+qiskit-aer==0.16.0
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.7.2
+pandas==2.3.3
+matplotlib==3.10.9
+xgboost==3.2.0
+statsmodels==0.14.6
+mlflow==3.14.0

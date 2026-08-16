@@ -1,0 +1,23 @@
+# Ambiente Conda reprodutível do projeto (qml_dengue).
+# Criar com:  conda env create -f environment.yml
+#             conda activate qml_dengue
+name: qml_dengue
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pip
+  - pip:
+      - pennylane==0.42.3
+      - pennylane-qiskit==0.42.0
+      - qiskit==1.2.4
+      - qiskit-ibm-runtime==0.29.0
+      - qiskit-aer==0.16.0
+      - numpy==1.26.4
+      - scipy==1.15.3
+      - scikit-learn==1.7.2
+      - pandas==2.3.3
+      - matplotlib==3.10.9
+      - xgboost==3.2.0
+      - statsmodels==0.14.6
+      - mlflow==3.14.0

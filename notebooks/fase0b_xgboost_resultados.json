@@ -1,0 +1,45 @@
+{
+  "algoritmo": "XGBoost",
+  "fase": 0,
+  "tipo": "classico",
+  "n_parametros_quanticos": null,
+  "config": {
+    "n_estimators": 300,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 3,
+    "reg_lambda": 1.0,
+    "n_bootstrap": 5,
+    "pesos_temporais": true,
+    "target": "log1p"
+  },
+  "C1": {
+    "R2": 0.2471,
+    "RMSE": 4965.92,
+    "MAE": 1728.84,
+    "WIS": 1654.9,
+    "WIS_norm": 0.5854,
+    "tempo_s": 0.3,
+    "nome": "XGB_Bootstrap_C1"
+  },
+  "C2": {
+    "R2": 0.1422,
+    "RMSE": 6425.14,
+    "MAE": 2703.69,
+    "WIS": 2586.65,
+    "WIS_norm": 0.66,
+    "tempo_s": 0.2,
+    "nome": "XGB_Bootstrap_C2"
+  },
+  "C3": {
+    "R2": -0.0262,
+    "RMSE": 191.49,
+    "MAE": 172.05,
+    "WIS": 138.05,
+    "WIS_norm": 0.2595,
+    "tempo_s": 0.2,
+    "nome": "XGB_Bootstrap_C3"
+  }
+}

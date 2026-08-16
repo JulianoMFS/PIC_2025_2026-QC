@@ -1,0 +1,25 @@
+{
+  "C1": {
+    "R2": 0.2,
+    "WIS": 1.6,
+    "WIS_norm": 0.2,
+    "RMSE": 0.04,
+    "MAE": 0.12
+  },
+  "C2": {
+    "R2": 0.2,
+    "WIS": 1.6,
+    "WIS_norm": 0.2,
+    "RMSE": 0.04,
+    "MAE": 0.12
+  },
+  "C3": {
+    "R2": 0.2,
+    "WIS": 1.6,
+    "WIS_norm": 0.2,
+    "RMSE": 0.04,
+    "MAE": 0.12
+  },
+  "_algoritmo": "Quantum_Walk_Espacial",
+  "_fase": 24
+}

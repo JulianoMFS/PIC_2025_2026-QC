@@ -1,0 +1,41 @@
+{
+  "algoritmo": "LSTM_Classico",
+  "fase": 35,
+  "tipo": "classico_recorrente",
+  "n_parametros_quanticos": null,
+  "config": {
+    "H": 4,
+    "W": 4,
+    "n_epochs": 30,
+    "n_bootstrap": 3,
+    "otimizador": "Adam(0.05)",
+    "alvo": "log1p"
+  },
+  "C1": {
+    "R2": -0.0565,
+    "RMSE": 5882.36,
+    "MAE": 2618.73,
+    "WIS": 2581.93,
+    "WIS_norm": 0.9134,
+    "tempo_s": 2.3,
+    "nome": "LSTM_C1"
+  },
+  "C2": {
+    "R2": -0.1689,
+    "RMSE": 7500.26,
+    "MAE": 3568.83,
+    "WIS": 3544.24,
+    "WIS_norm": 0.9043,
+    "tempo_s": 6.0,
+    "nome": "LSTM_C2"
+  },
+  "C3": {
+    "R2": -34.3787,
+    "RMSE": 1124.34,
+    "MAE": 1116.02,
+    "WIS": 1068.1,
+    "WIS_norm": 2.008,
+    "tempo_s": 8.6,
+    "nome": "LSTM_C3"
+  }
+}

@@ -1,0 +1,22 @@
+INICIO
+=== Estudo IMDC | grupo=lentos | features=13 ===
+  T1: treino=36 teste=52 pico=1562
+  T2: treino=88 teste=52 pico=25714
+  T3: treino=140 teste=52 pico=947
+[SALVO] C:\Users\julia\OneDrive\Área de Trabalho\PIBIT\Experimentos\Relatorio_Final_IC\estudo_IMDC_janelas\figuras\QSVM_pred_vs_obs.png
+[OK] QSVM           T1: R2=-0.492 WIS=271 | T2: R2=-0.380 WIS=5765 | T3: R2=-1.095 WIS=234
+     (364s)
+[SALVO] C:\Users\julia\OneDrive\Área de Trabalho\PIBIT\Experimentos\Relatorio_Final_IC\estudo_IMDC_janelas\figuras\EnsRegime_pred_vs_obs.png
+[OK] EnsRegime      T1: R2=0.421 WIS=90 | T2: R2=-0.084 WIS=4585 | T3: R2=-1.692 WIS=146
+     (242s)
+[SALVO] C:\Users\julia\OneDrive\Área de Trabalho\PIBIT\Experimentos\Relatorio_Final_IC\estudo_IMDC_janelas\figuras\VQR_ReUp_pred_vs_obs.png
+[OK] VQR_ReUp       T1: R2=0.542 WIS=102 | T2: R2=-0.391 WIS=5426 | T3: R2=-2.968 WIS=263
+     (1048s)
+[SALVO] C:\Users\julia\OneDrive\Área de Trabalho\PIBIT\Experimentos\Relatorio_Final_IC\estudo_IMDC_janelas\figuras\VQR_Angle_pred_vs_obs.png
+[OK] VQR_Angle      T1: R2=0.106 WIS=192 | T2: R2=-0.383 WIS=5649 | T3: R2=-5.229 WIS=423
+     (1728s)
+[SALVO] C:\Users\julia\OneDrive\Área de Trabalho\PIBIT\Experimentos\Relatorio_Final_IC\estudo_IMDC_janelas\figuras\QLSTM_pred_vs_obs.png
+[OK] QLSTM          T1: R2=-3.507 WIS=562 | T2: R2=-0.406 WIS=5860 | T3: R2=-21.911 WIS=811
+     (1663s)
+=== FIM ===
+FIM_TAG
