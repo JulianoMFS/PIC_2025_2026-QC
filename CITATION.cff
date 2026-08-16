@@ -11,7 +11,7 @@ authors:
     given-names: "Felipe Batista da"
     # Orientador da pesquisa de Iniciação Científica (PIBIT/CEUB)
 version: "1.0.0"
-date-released: "2026-07-18"
+date-released: "2026-08-09"
 license: MIT
 keywords:
   - quantum machine learning
