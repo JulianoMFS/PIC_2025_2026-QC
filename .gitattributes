@@ -1,0 +1,26 @@
+# Normaliza finais de linha: LF no repositório, checkout nativo por SO.
+* text=auto eol=lf
+
+# Notebooks e dados JSON são texto (diff/merge como texto).
+*.ipynb  text
+*.json   text
+*.py     text
+*.md     text
+*.yml    text
+*.cff    text
+*.csv    text
+
+# Binários — nunca converter finais de linha.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
+*.npz    binary
+*.gz     binary
+*.docx   binary
+*.xlsx   binary
+
+# Ajudam o GitHub a classificar a linguagem do repositório.
+*.ipynb  linguist-language=Python
+notebooks/**  linguist-documentation=false
