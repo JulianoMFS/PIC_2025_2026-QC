@@ -45,7 +45,7 @@ conda activate qml_dengue
 # ou: pip install -r requirements.txt
 ```
 
-Python 3.10 · PennyLane 0.42 · Qiskit 1.2 · scikit-learn 1.7 · XGBoost 3.2.
+Python 3.10 · PennyLane **0.40.0** (estudo principal) / 0.42.3 (hardware e satélite IMDC) · Qiskit 1.2 · scikit-learn 1.7 · XGBoost 3.2.
 
 ## Credenciais (variáveis de ambiente)
 

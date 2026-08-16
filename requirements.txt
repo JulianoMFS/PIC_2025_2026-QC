@@ -1,9 +1,12 @@
 # Versões congeladas (Python 3.10.20). Instalar com: pip install -r requirements.txt
-pennylane==0.42.3
-pennylane-qiskit==0.42.0
-qiskit==1.2.4
-qiskit-ibm-runtime==0.29.0
-qiskit-aer==0.16.0
+#
+# NOTA: o ESTUDO PRINCIPAL (C1/C2/C3) rodou em PennyLane 0.40.0.
+# A EXECUÇÃO EM HARDWARE e o ESTUDO-SATÉLITE IMDC usaram PennyLane 0.42.3 +
+# PennyLane-Qiskit 0.42.0 + Qiskit 1.2.4 (ver bloco comentado ao final).
+# As duas versões do PennyLane são incompatíveis; use uma de cada vez.
+
+# --- Estudo principal (C1/C2/C3) ---
+pennylane==0.40.0
 numpy==1.26.4
 scipy==1.15.3
 scikit-learn==1.7.2
@@ -12,3 +15,10 @@ matplotlib==3.10.9
 xgboost==3.2.0
 statsmodels==0.14.6
 mlflow==3.14.0
+
+# --- Hardware / estudo-satélite IMDC (substituir o PennyLane acima) ---
+# pennylane==0.42.3
+# pennylane-qiskit==0.42.0
+# qiskit==1.2.4
+# qiskit-ibm-runtime==0.29.0
+# qiskit-aer==0.16.0
