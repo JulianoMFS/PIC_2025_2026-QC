@@ -7,6 +7,9 @@ authors:
     given-names: "Juliano de Morais Ferreira"
   - family-names: "Martins"
     given-names: "Kelvin dos Santos"
+  - family-names: "Silva"
+    given-names: "Felipe Batista da"
+    # Orientador da pesquisa de Iniciação Científica (PIBIT/CEUB)
 version: "1.0.0"
 date-released: "2026-07-18"
 license: MIT
