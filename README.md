@@ -2,7 +2,7 @@
 
 **Benchmark de modelos clássicos e quânticos para previsão probabilística e detecção de mudanças de regime da dengue no Distrito Federal.**
 
-Projeto de Iniciação Científica (PIBIT/CEUB, 2026). Compara modelos clássicos, quânticos e híbridos na previsão semanal de casos de dengue no DF, com validação temporal reprodutível, e explora um *Quantum Autoencoder* (QAE) para detecção antecipada de mudanças de regime. Parte do pipeline foi executada em hardware quântico real (IBM Quantum).
+Projeto de Iniciação Científica (PIBIT/CEUB, 2025-2026). Compara modelos clássicos, quânticos e híbridos na previsão semanal de casos de dengue no DF, com validação temporal reprodutível, e explora um *Quantum Autoencoder* (QAE) para detecção antecipada de mudanças de regime. Parte do pipeline foi executada em hardware quântico real (IBM Quantum).
 
 > ⚠️ **Achados em resumo:** no escopo deste benchmark, os modelos baseados em árvores apresentaram o melhor desempenho na previsão de magnitude; os regressores quânticos **não** demonstraram vantagem; e o QAE produziu um sinal antecipatório relevante no surto de 2024 — resultado **exploratório**, a validar externamente. A execução em hardware é **prova de exequibilidade técnica**, não de robustez quântica.
 
