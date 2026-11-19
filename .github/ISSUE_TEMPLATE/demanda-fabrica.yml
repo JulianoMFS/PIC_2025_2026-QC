@@ -1,0 +1,31 @@
+name: Demanda para a fábrica
+description: Tarefa pequena e verificável para os agentes (triagem → implementação → revisão).
+labels: ["demanda"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: O que precisa mudar
+      description: Descreva o problema ou a melhoria em 2–5 frases.
+    validations:
+      required: true
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critério de aceite
+      description: Como saberemos que ficou certo? Idealmente, um teste que deve passar.
+      placeholder: "Ex.: test_x verifica que a média da normalização usa só o período de treino."
+    validations:
+      required: true
+  - type: textarea
+    id: arquivos
+    attributes:
+      label: Arquivos envolvidos (se souber)
+  - type: checkboxes
+    id: limites
+    attributes:
+      label: Limites
+      options:
+        - label: Não envolve dado identificado de paciente.
+          required: true
+        - label: Pode alterar resultados já publicados (golden/, resultados/, figuras).

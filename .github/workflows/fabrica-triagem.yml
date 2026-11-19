@@ -1,0 +1,49 @@
+# Estação 1 — TRIAGEM + ESPECIFICAÇÃO
+# Disparo: issue aberta com o template "Demanda para a fábrica".
+# O agente NÃO altera código: só comenta classificação, escopo e plano.
+# Ponto de decisão humano: você lê o plano e aplica a etiqueta `fabrica`.
+name: Fábrica · Triagem
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: fabrica-triagem-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  triagem:
+    if: contains(github.event.issue.labels.*.name, 'demanda')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 15
+            --allowedTools "Read,Glob,Grep,Bash(gh issue comment:*),Bash(gh issue edit:*),Bash(gh issue view:*)"
+          prompt: |
+            Você é o agente de TRIAGEM da fábrica deste repositório. Leia CLAUDE.md.
+            Analise a issue #${{ github.event.issue.number }} (título: ${{ github.event.issue.title }}).
+
+            Responda com UM comentário na issue, em português, contendo:
+            1. Classificação: bug | melhoria | teste | documentação | fora-de-escopo.
+            2. Tamanho: P (≤1 arquivo), M (2–4 arquivos) ou G (>4 arquivos ou muda resultado científico).
+            3. Arquivos que provavelmente mudam e por quê.
+            4. Plano em até 6 passos, com o teste que vai provar que funcionou.
+            5. Riscos: mexe em `golden/`, `resultados/`, notebooks ou números já publicados?
+            6. Recomendação: "apta para a fábrica" ou "exige humano" (sempre "exige humano" se for G
+               ou se alterar resultado científico).
+
+            Se apta, aplique a etiqueta `triada`. Se exigir humano, aplique `exige-humano`.
+            Não altere nenhum arquivo. Não aplique a etiqueta `fabrica`: essa decisão é do mantenedor.
