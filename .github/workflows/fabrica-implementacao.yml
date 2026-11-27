@@ -1,0 +1,55 @@
+# Estação 2 — IMPLEMENTAÇÃO
+# Disparo: o mantenedor aplica a etiqueta `fabrica` numa issue (decisão humana).
+# O agente cria um branch, implementa com testes, roda pytest e abre um PR.
+# Nunca faz merge: a proteção da main exige revisão humana.
+name: Fábrica · Implementação
+
+on:
+  issues:
+    types: [labeled]
+
+concurrency:
+  group: fabrica-impl-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  implementar:
+    if: github.event.label.name == 'fabrica'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --model claude-sonnet-5-5
+            --max-turns 40
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(python -m pytest:*),Bash(git:*),Bash(gh pr create:*),Bash(gh issue comment:*),Bash(gh issue view:*)"
+          prompt: |
+            Você é o agente de IMPLEMENTAÇÃO da fábrica. Siga CLAUDE.md à risca.
+            Trabalhe a issue #${{ github.event.issue.number }}. Leia a issue e o comentário de triagem.
+
+            Fluxo obrigatório (TDD):
+            1. Crie o branch `fabrica/issue-${{ github.event.issue.number }}`.
+            2. Escreva primeiro o teste que falha e demonstra o problema/requisito.
+            3. Implemente a menor mudança que faz o teste passar.
+            4. Rode `python -m pytest` até tudo passar. Se não conseguir, pare e comente na issue o bloqueio.
+            5. Abra um PR para `main` com título "[fabrica] <resumo>" e corpo com:
+               "Fecha #${{ github.event.issue.number }}", o que mudou, como foi testado e riscos.
+            Não altere `golden/`, `*/resultados/`, `*.ipynb`, `data/` nem figuras, a menos que a issue peça
+            explicitamente. Não faça merge.

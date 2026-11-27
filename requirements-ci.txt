@@ -1,0 +1,6 @@
+# Dependências leves para a CI (testes de pipeline e métricas).
+# Não instala PennyLane/Qiskit: os testes não executam circuitos quânticos.
+numpy==1.26.4
+scikit-learn==1.7.2
+matplotlib==3.10.9
+pytest==8.3.5

@@ -1,0 +1,50 @@
+# Estação 3 — REVISÃO INDEPENDENTE
+# Disparo: PR aberto ou atualizado em branch `fabrica/*`.
+# Um agente separado, sem o contexto do implementador, revisa o diff contra a issue
+# e contra CLAUDE.md. Ele só comenta; aprovação e merge continuam humanos.
+name: Fábrica · Revisão
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+concurrency:
+  group: fabrica-revisao-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  revisar:
+    if: startsWith(github.head_ref, 'fabrica/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --model claude-opus-5-5
+            --max-turns 20
+            --allowedTools "Read,Glob,Grep,Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr comment:*),Bash(gh issue view:*),mcp__github_inline_comment__create_inline_comment"
+          prompt: |
+            Você é o REVISOR independente da fábrica. Leia CLAUDE.md.
+            Revise o PR #${{ github.event.pull_request.number }} e a issue que ele fecha.
+
+            Verifique, nesta ordem:
+            1. O PR resolve exatamente o que a issue pede, sem escopo extra?
+            2. Existe teste novo que falharia sem a mudança?
+            3. Há risco de vazamento temporal (dados do teste usados no treino/normalização)?
+            4. Mexeu em `golden/`, resultados, notebooks, dados ou figuras sem a issue pedir?
+            5. Há segredo, token ou dado identificado de pessoa no diff?
+
+            Use comentários inline para problemas concretos. Termine com um comentário-resumo
+            com veredito: APROVAR, PEDIR AJUSTES ou BLOQUEAR, e o motivo em uma linha.
+            Não aprove formalmente o PR nem faça merge.
